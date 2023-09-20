@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Tracking System</title>
+    <style>
+        /* Overall page styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 5px;
+        }
+
+        /* Navigation styles */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: #2980b9;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        /* Main content styles */
+        main {
+            padding: 10px;
+        }
+
+        /* Section styles */
+        section {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #3498db;
+            color: #fff;
+            text-align: justify;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vehicle Tracking System</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#live-tracking">Live Tracking</a></li>
+            <li><a href="#history">History</a></li>
+            <li><a href="#Add Vehicle">Add Vehicle</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <!-- Display relevant information about vehicles, alerts, etc. -->
+        </section>
+
+        <section id="live-tracking">
+            <h2>Live Tracking</h2>
+            <!-- Display real-time vehicle locations and details -->
+        </section>
+
+        <section id="history">
+            <h2>History</h2>
+            <!-- Display historical tracking data and search/filter options -->
+        </section>
+
+        <section id="Add Vehicle">
+            <h2>Add Vehicle</h2>
+            <!-- Display historical tracking data and search/filter options -->
+        </section>
+
+        <div id="map"></div>
+        <div id="vehicle-list">
+            <h2>Vehicle List</h2>
+            <ul id="vehicle-items">
+                <!-- Vehicle list items will be added here dynamically -->
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        // JavaScript code to display live GPS location data on the map and vehicle list
+
+        // Simulated vehicle data (replace with real data fetched from the backend)
+        const vehicleData = [
+            {
+                id: 1,
+                name: "Vehicle 1",
+                latitude: 37.7749,
+                longitude: -122.4194,
+            },
+            {
+                id: 2,
+                name: "Vehicle 2",
+                latitude: 37.7891,
+                longitude: -122.3900,
+            },
+        ];
+
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: { lat: 37.7749, lng: -122.4194 }, // Default map center
+            });
+
+            // Create markers for each vehicle and add them to the map
+            vehicleData.forEach(vehicle => {
+                const marker = new google.maps.Marker({
+                    position: { lat: vehicle.latitude, lng: vehicle.longitude },
+                    map: map,
+                    title: vehicle.name,
+                });
+
+                // Create list item for the vehicle
+                const listItem = document.createElement("li");
+                listItem.textContent = `${vehicle.name} - Lat: ${vehicle.latitude}, Lng: ${vehicle.longitude}`;
+                document.getElementById("vehicle-items").appendChild(listItem);
+            });
+        }
+    </script>
+
+    <!-- Include the Google Maps JavaScript API library with your API key -->
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+    </script>
+
+    <footer>
+        <p>2023-Tekathon @Tech Titans</p>
+        <p>Member's Name: Divyanshu Jaiswal,Keshav Garg, Inderkiran Singh,Rajvansh Rana</p>
+    </footer>
+</body>
+</html>
